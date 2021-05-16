@@ -7,6 +7,7 @@ import About from "./pages/About";
 import Feature from "./pages/Feature";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
+import SinglePage from "./pages/SinglePage";
 //!https://preview.themeforest.net/item/prooland-app-landing-page/full_screen_preview/31223264
 function App() {
   return (
@@ -18,6 +19,10 @@ function App() {
           <Route exact path="/feature" component={Feature}></Route>
           <Route exact path="/blog" component={Blog}></Route>
           <Route exact path="/contact" component={Contact}></Route>
+          {/* <Route exact path="/singlepage" component={SinglePage}></Route> */}
+          <Route exact path="/blog/:id">
+            <SinglePage />
+          </Route>
         </Switch>
       </Router>
     </>

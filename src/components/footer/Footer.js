@@ -1,12 +1,12 @@
 import React from "react";
 import {
   makeStyles,
-  Link,
   Grid,
   Paper,
   Typography,
   Container,
 } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo-2.png";
 import ftBg from "../../assets/images/footer-bg-1.png";
 import { ftContent } from "../../content/homePage";
@@ -97,7 +97,7 @@ export default function Footer() {
               <Link className={classes.link} to="/about">
                 About
               </Link>
-              <Link className={classes.link} to="/features">
+              <Link className={classes.link} to="/feature">
                 Features
               </Link>
               <Link className={classes.link} to="/blog">
@@ -122,7 +122,6 @@ export default function Footer() {
         </Grid>
       </Container>
       <Paper className={classes.copyRight}>
-        {" "}
         @copy Copy right ashu. All Rights Reserved
       </Paper>
     </div>

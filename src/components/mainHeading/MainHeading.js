@@ -5,6 +5,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     color: "#1F2873",
     fontSize: "clamp(1.5rem, 5vw, 2.375rem)",
+    textTransform: "capitalize",
   },
   subHeading: {
     fontWeight: "300",

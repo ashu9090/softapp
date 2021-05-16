@@ -42,15 +42,15 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "5px 7px 27px rgba(0, 0, 0, 0.06)",
     "& .MuiTextField-root": {
       width: "100%",
+      "& .MuiInput-underline:before, & .MuiInput-underline:after": {
+        display: "none",
+        boxShadow: "none !important",
+        outline: "none !important",
+        borderBottom: "none !important",
+      },
       "& .MuiInputBase-input": {
         width: "100%",
         padding: "15px 10px",
-        border: "none",
-        boxShadow: "none !important",
-        outline: "none",
-      },
-      "& .MuiInputBase-input:hover": {
-        border: "none",
         boxShadow: "none !important",
         outline: "none",
       },
@@ -65,6 +65,10 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     right: "0",
     top: "0",
+    "&:hover": {
+      background: "#1f2873",
+      color: "#fff",
+    },
   },
 }));
 

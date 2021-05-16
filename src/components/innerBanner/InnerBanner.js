@@ -41,7 +41,7 @@ function InnerBanner(props) {
           <Typography className={classes.bNav} variant="6">
             <Link to="/" className={classes.bNav}>
               Home
-            </Link>{" "}
+            </Link>
             <NavigateNextOutlinedIcon className={classes.bNav} />
             {props.Bannertext}
           </Typography>
