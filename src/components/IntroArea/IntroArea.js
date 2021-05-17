@@ -42,7 +42,7 @@ function IntroArea() {
           {inofBox.map((elem, i) => {
             const { pic, heading } = elem;
             return (
-              <Grid item md={3} key={(elem, i)}>
+              <Grid item xs={12} md={6} lg={3} key={(elem, i)}>
                 <Paper className={classes.introBox}>
                   <img src={pic} alt="infoPic" className={classes.boxImage} />
                   <Link to="/">

@@ -86,7 +86,7 @@ function Features() {
                   {Feature.map((elem, i) => {
                     const { pic, title, paragraph } = elem;
                     return (
-                      <Grid item md={6} key={(elem, i)}>
+                      <Grid item xs={12} md={6} lg={6} key={(elem, i)}>
                         <Paper className={classes.iconBox}>
                           <img
                             src={pic}

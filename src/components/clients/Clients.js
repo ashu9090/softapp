@@ -70,6 +70,12 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "16px",
     marginBottom: "10px",
   },
+  slickList: {
+    "& .slick-arrow": {
+      width: "40px",
+      height: "40px",
+    },
+  },
 }));
 function Clients() {
   const classes = useStyles();
@@ -82,11 +88,37 @@ function Clients() {
     centerPadding: "0px",
     slidesToShow: 3,
     slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 991,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
   return (
     <div className={classes.root}>
       <Container maxWidth="lg">
-        <Grid spacing={3} container>
+        <Grid spacing={4} container>
           {ClientsList.map((elm, i) => {
             const { heading, subHeading } = elm;
             return (
@@ -107,7 +139,7 @@ function Clients() {
               </Grid>
             );
           })}
-          <Grid item md={12}>
+          <Grid item xs={12}>
             <Slider {...settings} className={classes.slickList}>
               {clientCard.map((elm, i) => {
                 const { pic, textWord, name, date, stars } = elm;

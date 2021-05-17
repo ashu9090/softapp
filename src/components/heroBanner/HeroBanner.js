@@ -2,9 +2,6 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Container, Grid, Paper, Typography } from "@material-ui/core";
 import hcbgImage from "../../assets/images/bg-3.png";
-//import app1 from "../../images/1.png";
-//import googleBtn from "../../assets/images/goggle-btn.png";
-//import appStore from "../../assets/images/app-store.png";
 import { Link } from "react-router-dom";
 import { HeroText } from "../../content/homePage";
 
@@ -17,18 +14,35 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "100% 100%",
-    //height: "calc(100vh - 160px)",
     height: "100vh",
     alignItems: "center",
+    [theme.breakpoints.down("sm")]: {
+      backgroundSize: "cover",
+    },
+    [theme.breakpoints.up("sm")]: {
+      backgroundSize: "cover",
+    },
   },
   appImage: {
     width: "100%",
-    minHeight: "300px",
     boxShadow: "none",
     background: "none",
+    [theme.breakpoints.down("sm")]: {
+      height: "200px",
+      margin: "0 auto",
+      display: "table",
+    },
+    [theme.breakpoints.up("md")]: {
+      height: "300px",
+    },
+    [theme.breakpoints.up("lg")]: {
+      height: "400px",
+    },
   },
   imageStyle: {
     width: "100%",
+    height: "100%",
+    ObjectFit: "cover",
   },
   heading: {
     fontWeight: "bold",
@@ -99,21 +113,33 @@ function HeroBanner(props) {
                   {subtitle}
                 </Typography>
 
-                <Grid
-                  container
-                  spacing={2}
-                  data-aos="fade-right"
-                  data-aos-duration="2000"
-                >
-                  <Grid item md={6}>
-                    <Link to="/" className={classes.btnLink}>
-                      <img src={google} alt="pic" />
-                    </Link>
-                  </Grid>
-                  <Grid item md={6}>
-                    <Link to="/" className={classes.btnLink}>
-                      <img src={appStore} alt="pic" />
-                    </Link>
+                <Grid container spacing={0}>
+                  <Grid item xs={12} md={10} lg={8}>
+                    <Grid
+                      container
+                      spacing={2}
+                      data-aos="fade-right"
+                      data-aos-duration="2000"
+                    >
+                      <Grid item xs={6}>
+                        <Link to="/" className={classes.btnLink}>
+                          <img
+                            src={google}
+                            alt="pic"
+                            className={classes.imageStyle}
+                          />
+                        </Link>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Link to="/" className={classes.btnLink}>
+                          <img
+                            src={appStore}
+                            alt="pic"
+                            className={classes.imageStyle}
+                          />
+                        </Link>
+                      </Grid>
+                    </Grid>
                   </Grid>
                 </Grid>
               </Grid>

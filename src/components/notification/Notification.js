@@ -82,7 +82,7 @@ function Notification() {
           const { heading, subHeading, pic } = elm;
           return (
             <Grid container spacing={3}>
-              <Grid item xs={6}>
+              <Grid item md={6}>
                 <MainHeading heading={heading} subHeading={subHeading} />
 
                 <form
@@ -96,7 +96,7 @@ function Notification() {
                   </div>
                 </form>
               </Grid>
-              <Grid item xs={6} data-aos="fade-left">
+              <Grid item md={6} data-aos="fade-left">
                 <Paper className={classes.appImage}>
                   <img
                     src={pic}

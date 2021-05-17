@@ -51,7 +51,7 @@ function Counter() {
           {CounterText.map((elm, i) => {
             const { number, text } = elm;
             return (
-              <Grid item xs={3} key={(elm, i)}>
+              <Grid item xs={12} md={6} lg={3} key={(elm, i)}>
                 <Paper className={classes.paper}>
                   <Typography
                     variant="h3"

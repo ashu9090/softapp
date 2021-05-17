@@ -48,6 +48,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "contain",
+    "& .slick-arrow": {
+      width: "40px",
+      height: "40px",
+    },
   },
 }));
 
@@ -60,12 +64,38 @@ function OurApp() {
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 991,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
     <div className={classes.root}>
       <Container maxWidth="lg">
-        <Grid spacing={3} container>
+        <Grid spacing={4} container>
           <Grid item xs={12}>
             {ourApp.map((elm, i) => {
               const { heading, subHeading } = elm;
