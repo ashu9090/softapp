@@ -8,9 +8,8 @@ import {
   Button,
   List,
 } from "@material-ui/core";
-
-import clsx from "clsx";
-// import MenuIcon from "@material-ui/icons/Menu";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import MenuIcon from "@material-ui/icons/Menu";
 import logo from "../../assets/images/logo.png";
 
 import { Link, NavLink } from "react-router-dom";
@@ -45,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     width: "40px",
+    float: "right",
   },
   dLink: {
     display: "flex",
@@ -58,28 +58,17 @@ const useStyles = makeStyles((theme) => ({
 
 function Header() {
   const classes = useStyles();
-  const [state, setState] = React.useState({
-    right: false,
-  });
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-
-    setState({ ...state, [anchor]: open });
+  const matches = useMediaQuery("(min-width: 600px)");
+  const [right, setRight] = React.useState(false);
+  const toggleDrawer = (open) => {
+    setRight(open);
   };
 
-  const list = (anchor) => (
+  const list = () => (
     <div
-      className={clsx(classes.list, {
-        [classes.fullList]: anchor === "top" || anchor === "bottom",
-      })}
       role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
+      onClick={() => toggleDrawer(false)}
+      onKeyDown={() => toggleDrawer(false)}
     >
       <List className={classes.dLink}>
         <NavLink
@@ -148,92 +137,96 @@ function Header() {
 
   return (
     <>
-      {["right"].map((anchor) => (
-        <React.Fragment key={anchor}>
+      {matches ? (
+        <AppBar position="sticky" className={classes.root}>
+          <Toolbar className={classes.toolbar}>
+            <Link to="/">
+              <img src={logo} alt="logo" />
+            </Link>
+            <Typography>
+              <NavLink
+                className={classes.link}
+                to="/"
+                exact
+                activeClassName="selected"
+                activeStyle={{
+                  fontWeight: "bold",
+                  color: "red",
+                }}
+              >
+                Home
+              </NavLink>
+              <NavLink
+                exact
+                className={classes.link}
+                to="/about"
+                activeClassName="selected"
+                activeStyle={{
+                  fontWeight: "bold",
+                  color: "red",
+                }}
+              >
+                About
+              </NavLink>
+              <NavLink
+                exact
+                className={classes.link}
+                to="/feature"
+                activeClassName="selected"
+                activeStyle={{
+                  fontWeight: "bold",
+                  color: "red",
+                }}
+              >
+                Features
+              </NavLink>
+              <NavLink
+                exact
+                className={classes.link}
+                to="/blog"
+                activeClassName="selected"
+                activeStyle={{
+                  fontWeight: "bold",
+                  color: "red",
+                }}
+              >
+                Blog
+              </NavLink>
+              <NavLink
+                exact
+                className={classes.link}
+                to="/contact"
+                activeClassName="selected"
+                activeStyle={{
+                  fontWeight: "bold",
+                  color: "red",
+                }}
+              >
+                Contact
+              </NavLink>
+            </Typography>
+          </Toolbar>
+        </AppBar>
+      ) : (
+        <React.Fragment>
           <Button
             className={classes.menuButton}
-            onClick={toggleDrawer(anchor, true)}
+            onClick={() => toggleDrawer(true)}
           >
-            {anchor}
+            <MenuIcon />
           </Button>
-          <Drawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-          >
-            {list(anchor)}
-          </Drawer>
-        </React.Fragment>
-      ))}
-      <AppBar position="sticky" className={classes.root}>
-        <Toolbar className={classes.toolbar}>
-          <Link to="/">
+          <Link to="/" className={classes.mobLogo}>
             <img src={logo} alt="logo" />
           </Link>
-          <Typography>
-            <NavLink
-              className={classes.link}
-              to="/"
-              exact
-              activeClassName="selected"
-              activeStyle={{
-                fontWeight: "bold",
-                color: "red",
-              }}
-            >
-              Home
-            </NavLink>
-            <NavLink
-              exact
-              className={classes.link}
-              to="/about"
-              activeClassName="selected"
-              activeStyle={{
-                fontWeight: "bold",
-                color: "red",
-              }}
-            >
-              About
-            </NavLink>
-            <NavLink
-              exact
-              className={classes.link}
-              to="/feature"
-              activeClassName="selected"
-              activeStyle={{
-                fontWeight: "bold",
-                color: "red",
-              }}
-            >
-              Features
-            </NavLink>
-            <NavLink
-              exact
-              className={classes.link}
-              to="/blog"
-              activeClassName="selected"
-              activeStyle={{
-                fontWeight: "bold",
-                color: "red",
-              }}
-            >
-              Blog
-            </NavLink>
-            <NavLink
-              exact
-              className={classes.link}
-              to="/contact"
-              activeClassName="selected"
-              activeStyle={{
-                fontWeight: "bold",
-                color: "red",
-              }}
-            >
-              Contact
-            </NavLink>
-          </Typography>
-        </Toolbar>
-      </AppBar>
+          <Drawer
+            anchor="left"
+            open={right}
+            onClose={() => toggleDrawer(false)}
+          >
+            {list()}
+          </Drawer>
+        </React.Fragment>
+      )}
     </>
   );
 }
